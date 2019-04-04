@@ -8,20 +8,17 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import DeviceInfo from 'react-native-device-info';
+import IMEI from 'react-native-imei';
 
-var DeviceInfo = require('react-native-device-info');
+async function getImeiAndroid(){
+  return await IMEI.getImei().then(imei => { return imei});
+}
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 var imei = Platform.select({
-  ios: DeviceInfo.getIdfa(),
-  android: DeviceInfo.getImei(),
-}); 
-
+  ios: DeviceInfo.getUniqueID(),
+  android: getImeiAndroid() ,
+});
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -30,7 +27,6 @@ export default class App extends Component<Props> {
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>Imei: {imei}</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
       </View>
     );
   }

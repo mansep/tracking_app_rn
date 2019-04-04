@@ -9,7 +9,8 @@
   "dependencies": {
     "react": "16.8.3",
     "react-native": "0.59.3",
-    "react-native-device-info": "^1.4.1"
+    "react-native-device-info": "^1.4.1",
+    "react-native-imei": "^0.2.0"
   },
   "devDependencies": {
     "@babel/core": "7.4.3",
